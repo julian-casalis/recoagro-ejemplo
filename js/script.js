@@ -31,52 +31,37 @@ var swiper1 = new Swiper(".customSwiper", {
 });
 
 var swiper2 = new Swiper(".mySwiper-2", {
-    slidesPerView: 3,
-    spaceBetween: 30,
+    slidesPerView: 6,
+    spaceBetween: 15,
     loop: true,
+    autoplay: {
+        delay: 2000,  // Tiempo en milisegundos para cada slide (3 segundos)
+        disableOnInteraction: false,  // Mantiene el autoplay incluso cuando se interactúa con los botones
+    },
     navigation: {
         nextEl: ".swiper-button-next",
         prevEl: ".swiper-button-prev",
     },
-    autoplay: {
-        delay: 6000,  // Tiempo en milisegundos para cada slide (3 segundos)
-        disableOnInteraction: false,  // Mantiene el autoplay incluso cuando se interactúa con los botones
-    },
     breakpoints: {
         0: {
-            slidesPerView: 1
-        },
-        520: {
             slidesPerView: 2
         },
-        950: {
+        520: {
             slidesPerView: 3
+        },
+        950: {
+            slidesPerView: 6
         },
     }
 });
 
 
-document.addEventListener('DOMContentLoaded', function () {
-let navbar = document.querySelector('.navbar');
-let searchForm = document.querySelector('.search-form');
 
-// Evento para el botón de menú
-document.querySelector('#menu-btn').onclick = () => {
-    navbar.classList.toggle('active'); // Alterna la clase 'active' en el navbar
-    // search-form.classList.remove('active'); // Remueve la clase 'active' en el formulario de búsqueda
-}
-
-// // Evento para el botón de búsqueda
-// document.querySelector('#search-btn').onclick = () => {
-//     search-form.classList.toggle('active'); // Alterna la clase 'active' en el formulario de búsqueda
-// }
-
-// Evento para el scroll de la ventana
+// Evento para el scroll de la barra de busquedas, hace qyue suba o baje
 window.onscroll = () => {
     navbar.classList.remove('active'); // Remueve la clase 'active' en el navbar
    
 };
-});
 
 let lastScrollTop = 0; // Variable para saber la última posición del scroll
 
@@ -95,3 +80,14 @@ window.addEventListener("scroll", function() {
     lastScrollTop = currentScroll <= 0 ? 0 : currentScroll; // Evita que se vuelva negativo
 });
 
+
+
+document.addEventListener('DOMContentLoaded', function () {
+    let navbar = document.querySelector('.navbar');
+    let menuBtn = document.querySelector('#menu-btn');
+
+    // Evento para el botón de menú
+    menuBtn.onclick = () => {
+        navbar.classList.toggle('active'); // Alterna la clase 'active' en el navbar
+    }
+});
